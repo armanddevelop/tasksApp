@@ -1,11 +1,13 @@
 const Task = ({ tasksByProject }) => {
-  const [{ name, estado }] = tasksByProject;
-  return (
-    <li className="tarea sombra">
-      <p>{name}</p>
+  return tasksByProject.map((task) => (
+    <li className="tarea sombra" key={task.id}>
+      {task.name}
       <div className="estado">
-        <button type="button" className={estado ? "completo" : "incompleto"}>
-          {estado ? "Completo" : "Incompleto"}
+        <button
+          type="button"
+          className={!task.estado ? "incompleto" : "completo"}
+        >
+          {!task.estado ? "Incompleto" : "Completo"}
         </button>
       </div>
       <div className="acciones">
@@ -17,7 +19,7 @@ const Task = ({ tasksByProject }) => {
         </button>
       </div>
     </li>
-  );
+  ));
 };
 
 export default Task;

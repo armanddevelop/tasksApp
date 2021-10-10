@@ -10,11 +10,18 @@ export const findDuplicateProject = (nameProject, listProject) => {
   return duplicateNameProject;
 };
 
-export const addObjProperty = (obj) => {
-  for (const task of obj) {
+export const addObjProperty = (arrObj) => {
+  for (const task of arrObj) {
     if (!task.hasOwnProperty("id")) {
       task.id = uuid();
     }
   }
+  return arrObj;
+};
+export const addSinglePropertyObj = (obj) => {
+  if (!obj.hasOwnProperty("id")) {
+    obj.id = uuid();
+  }
+
   return obj;
 };

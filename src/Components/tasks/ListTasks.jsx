@@ -36,9 +36,7 @@ const ListTasks = () => {
                 <p>No hay tareas</p>
               </li>
             ) : (
-              tasksByProject.map((task) => (
-                <Task key={task.id} tasksByProject={tasksByProject} />
-              ))
+              <Task tasksByProject={tasksByProject} />
             )}
           </ul>
           {tasksByProject.length !== 0 ? buttonDeleteProject : null}

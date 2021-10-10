@@ -8,4 +8,5 @@ export const initialState = {
 export const inistialStateTask = {
   tasks: [],
   tasksByProject: [],
+  errorTask: true,
 };
