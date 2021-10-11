@@ -1,4 +1,12 @@
-const Task = ({ tasksByProject }) => {
+const Task = ({
+  tasksByProject,
+  deleteTaskById,
+  getTasksListByCurrentProject,
+}) => {
+  const deleteAndGetTaskByCurrentPorject = (id, idProyecto) => {
+    deleteTaskById(id);
+    getTasksListByCurrentProject(idProyecto);
+  };
   return tasksByProject.map((task) => (
     <li className="tarea sombra" key={task.id}>
       {task.name}
@@ -14,7 +22,13 @@ const Task = ({ tasksByProject }) => {
         <button type="button" className="btn btn-primario">
           Editar
         </button>
-        <button type="button" className="btn btn-secundario">
+        <button
+          type="button"
+          className="btn btn-secundario"
+          onClick={() =>
+            deleteAndGetTaskByCurrentPorject(task.id, task.proyectoId)
+          }
+        >
           Eliminar
         </button>
       </div>

@@ -7,7 +7,12 @@ const ListTasks = () => {
   const projectsContext = useContext(ProjectContext);
   const tasksContext = useContext(TaskContext);
   const { currentProject, deleteProject, deleteProjectFlag } = projectsContext;
-  const { getTaskList, tasksByProject } = tasksContext;
+  const {
+    getTaskList,
+    tasksByProject,
+    deleteTaskById,
+    getTasksListByCurrentProject,
+  } = tasksContext;
   const [obj] = currentProject;
   const buttonDeleteProject = (
     <button
@@ -36,7 +41,11 @@ const ListTasks = () => {
                 <p>No hay tareas</p>
               </li>
             ) : (
-              <Task tasksByProject={tasksByProject} />
+              <Task
+                tasksByProject={tasksByProject}
+                deleteTaskById={deleteTaskById}
+                getTasksListByCurrentProject={getTasksListByCurrentProject}
+              />
             )}
           </ul>
           {tasksByProject.length !== 0 ? buttonDeleteProject : null}

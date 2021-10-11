@@ -6,6 +6,7 @@ import {
   GET_TASKS_LIST_BY_CURRENT_ID_PROJECT,
   ADD_NEW_TASK,
   VALIDATE_FORM_TASKS,
+  DELETE_TASK,
 } from "../../../types";
 import { inistialStateTask } from "../../../state/initialState";
 
@@ -50,6 +51,13 @@ const TaskState = (props) => {
       type: VALIDATE_FORM_TASKS,
     });
   };
+  const _deleteTaskById = (idTask) => {
+    console.log("esto vale idTask ", idTask);
+    dispatch({
+      type: DELETE_TASK,
+      payload: idTask,
+    });
+  };
   return (
     <TaskContext.Provider
       value={{
@@ -60,6 +68,7 @@ const TaskState = (props) => {
         getTasksListByCurrentProject: _getTasksListByCurrentProject,
         addNewTask: _addNewTask,
         errorTaskFun: _errorTask,
+        deleteTaskById: _deleteTaskById,
       }}
     >
       {props.children}
