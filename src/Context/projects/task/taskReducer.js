@@ -26,7 +26,7 @@ const TaskReducer = (state, action) => {
       const taskObj = addSinglePropertyObj(action.payload);
       return {
         ...state,
-        tasks: [...state.tasks, taskObj],
+        tasks: [taskObj, ...state.tasks],
         errorTask: true,
       };
     case VALIDATE_FORM_TASKS:

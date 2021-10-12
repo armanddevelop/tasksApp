@@ -22,7 +22,7 @@ const ReducerProject = (state, action) => {
     case ADD_INTO_PROJECTS_LIST:
       return {
         ...state,
-        projects: [...state.projects, action.payload],
+        projects: [action.payload, ...state.projects],
         formulario: false,
         errorForNewProject: false,
       };
@@ -43,7 +43,6 @@ const ReducerProject = (state, action) => {
       const newProjectList = state.projects.filter(
         (project) => project.id !== action.payload
       );
-      console.log(newProjectList);
       return {
         ...state,
         projects: newProjectList,

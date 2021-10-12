@@ -48,7 +48,7 @@ const ListTasks = () => {
               />
             )}
           </ul>
-          {tasksByProject.length !== 0 ? buttonDeleteProject : null}
+          {buttonDeleteProject}
         </>
       )}
     </>
