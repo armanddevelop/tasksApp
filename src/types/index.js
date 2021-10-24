@@ -10,3 +10,6 @@ export const GET_TASKS_LIST_BY_CURRENT_ID_PROJECT =
 export const ADD_NEW_TASK = "ADD_NEW_TASK";
 export const VALIDATE_FORM_TASKS = "VALIDATE_FORM_TASKS";
 export const DELETE_TASK = "DELETE_TASK";
+export const STATE_TASK = "STATE_TASK";
+export const CURRENT_TASK = "CURRENT_TASK";
+export const EDIT_TASK = "EDIT_TASK";

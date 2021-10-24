@@ -25,3 +25,10 @@ export const addSinglePropertyObj = (obj) => {
 
   return obj;
 };
+export const modifyStateTask = (task, modifyStateTask) => {
+  task.estado ? (task.estado = false) : (task.estado = true);
+  modifyStateTask(task);
+};
+export const selectTask = (task, currentTask) => {
+  currentTask(task);
+};

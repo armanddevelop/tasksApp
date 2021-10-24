@@ -7,6 +7,9 @@ import {
   ADD_NEW_TASK,
   VALIDATE_FORM_TASKS,
   DELETE_TASK,
+  STATE_TASK,
+  CURRENT_TASK,
+  EDIT_TASK,
 } from "../../../types";
 import { inistialStateTask } from "../../../state/initialState";
 
@@ -58,17 +61,39 @@ const TaskState = (props) => {
       payload: idTask,
     });
   };
+  const _stateTask = (task) => {
+    dispatch({
+      type: STATE_TASK,
+      payload: task,
+    });
+  };
+  const _currentTask = (task) => {
+    dispatch({
+      type: CURRENT_TASK,
+      payload: task,
+    });
+  };
+  const _editTask = (task) => {
+    dispatch({
+      type: EDIT_TASK,
+      payload: task,
+    });
+  };
   return (
     <TaskContext.Provider
       value={{
         tasks: state.tasks,
         tasksByProject: state.tasksByProject,
         errorTask: state.errorTask,
+        selectTaskState: state.selectTaskState,
         getTaskList: _getTaskList,
         getTasksListByCurrentProject: _getTasksListByCurrentProject,
         addNewTask: _addNewTask,
         errorTaskFun: _errorTask,
         deleteTaskById: _deleteTaskById,
+        stateTask: _stateTask,
+        currentTask: _currentTask,
+        editTask: _editTask,
       }}
     >
       {props.children}

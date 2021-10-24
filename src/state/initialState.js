@@ -9,4 +9,5 @@ export const inistialStateTask = {
   tasks: [],
   tasksByProject: [],
   errorTask: true,
+  selectTaskState: null,
 };

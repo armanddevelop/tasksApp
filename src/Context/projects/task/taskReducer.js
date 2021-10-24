@@ -4,6 +4,9 @@ import {
   ADD_NEW_TASK,
   VALIDATE_FORM_TASKS,
   DELETE_TASK,
+  STATE_TASK,
+  CURRENT_TASK,
+  EDIT_TASK,
 } from "../../../types";
 import { addObjProperty, addSinglePropertyObj } from "../../../utilities";
 
@@ -38,6 +41,27 @@ const TaskReducer = (state, action) => {
       return {
         ...state,
         tasks: state.tasks.filter((task) => task.id !== action.payload),
+      };
+    case STATE_TASK:
+      return {
+        ...state,
+        tasks: state.tasksByProject.map((task) =>
+          task.id === action.payload.id ? action.payload : task
+        ),
+      };
+    case CURRENT_TASK:
+      return {
+        ...state,
+        selectTaskState: action.payload,
+        errorTask: true,
+      };
+    case EDIT_TASK:
+      return {
+        ...state,
+        tasks: state.tasks.map((task) =>
+          task.id === action.payload.id ? action.payload : task
+        ),
+        selectTaskState: null,
       };
     default:
       return {

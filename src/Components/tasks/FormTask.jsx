@@ -1,17 +1,31 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import ProjectContext from "../../Context/projects/projectContext";
 import TaskContext from "../../Context/projects/task/taskContext";
+
 const FormTask = () => {
   const projectsContext = useContext(ProjectContext);
   const taskContext = useContext(TaskContext);
   const { currentProject, deleteProjectFlag } = projectsContext;
-  const { addNewTask, errorTaskFun, errorTask, getTasksListByCurrentProject } =
-    taskContext;
+  const {
+    addNewTask,
+    errorTaskFun,
+    errorTask,
+    getTasksListByCurrentProject,
+    selectTaskState,
+    editTask,
+  } = taskContext;
 
   const [nameTask, setNameTask] = useState({
     name: "",
   });
   const { name } = nameTask;
+  useEffect(() => {
+    selectTaskState !== null
+      ? setNameTask(selectTaskState)
+      : setNameTask({
+          name: "",
+        });
+  }, [selectTaskState]);
   const handleChange = (e) => {
     setNameTask({
       ...nameTask,
@@ -21,16 +35,23 @@ const FormTask = () => {
   const onHandleSubmit = (e) => {
     e.preventDefault();
     const [{ id }] = currentProject;
-    if (name.trim() === "") {
-      return errorTaskFun();
-    }
-    nameTask.estado = true;
-    nameTask.proyectoId = id;
+    if (selectTaskState !== null) {
+      if (name.trim() === "") {
+        return errorTaskFun();
+      }
+      editTask(nameTask);
+    } else {
+      if (name.trim() === "") {
+        return errorTaskFun();
+      }
+      nameTask.estado = true;
+      nameTask.proyectoId = id;
 
-    addNewTask(nameTask);
-    setNameTask({
-      name: "",
-    });
+      addNewTask(nameTask);
+      setNameTask({
+        name: "",
+      });
+    }
     getTasksListByCurrentProject(id);
   };
   return (
@@ -51,7 +72,9 @@ const FormTask = () => {
             <input
               type="submit"
               className="btn btn-primario btn-submit btn-block"
-              value="Agregar tarea"
+              value={
+                selectTaskState !== null ? "Editar tarea" : "Agragar tarea"
+              }
             />
           </div>
         </form>

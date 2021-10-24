@@ -1,11 +1,13 @@
 import { CSSTransition, TransitionGroup } from "react-transition-group";
-
+import { modifyStateTask, selectTask } from "../../utilities";
 const Task = ({
   tasksByProject,
   deleteTaskById,
   getTasksListByCurrentProject,
+  stateTask,
+  currentTask,
 }) => {
-  const deleteAndGetTaskByCurrentPorject = (id, idProyecto) => {
+  const deleteAndGetTaskByCurrentProject = (id, idProyecto) => {
     deleteTaskById(id);
     getTasksListByCurrentProject(idProyecto);
   };
@@ -19,19 +21,24 @@ const Task = ({
               <button
                 type="button"
                 className={!task.estado ? "incompleto" : "completo"}
+                onClick={() => modifyStateTask(task, stateTask)}
               >
                 {!task.estado ? "Incompleto" : "Completo"}
               </button>
             </div>
             <div className="acciones">
-              <button type="button" className="btn btn-primario">
+              <button
+                type="button"
+                className="btn btn-primario"
+                onClick={() => selectTask(task, currentTask)}
+              >
                 Editar
               </button>
               <button
                 type="button"
                 className="btn btn-secundario"
                 onClick={() =>
-                  deleteAndGetTaskByCurrentPorject(task.id, task.proyectoId)
+                  deleteAndGetTaskByCurrentProject(task.id, task.proyectoId)
                 }
               >
                 Eliminar

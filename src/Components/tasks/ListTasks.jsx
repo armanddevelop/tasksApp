@@ -12,6 +12,8 @@ const ListTasks = () => {
     tasksByProject,
     deleteTaskById,
     getTasksListByCurrentProject,
+    stateTask,
+    currentTask,
   } = tasksContext;
   const [obj] = currentProject;
   const buttonDeleteProject = (
@@ -45,6 +47,8 @@ const ListTasks = () => {
                 tasksByProject={tasksByProject}
                 deleteTaskById={deleteTaskById}
                 getTasksListByCurrentProject={getTasksListByCurrentProject}
+                stateTask={stateTask}
+                currentTask={currentTask}
               />
             )}
           </ul>
