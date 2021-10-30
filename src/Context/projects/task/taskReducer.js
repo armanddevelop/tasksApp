@@ -26,7 +26,6 @@ const TaskReducer = (state, action) => {
         ),
       };
     case ADD_NEW_TASK:
-      //console.log("Esto vale payload ", action.payload);
       const taskObj = addSinglePropertyObj(action.payload);
       return {
         ...state,
@@ -43,10 +42,11 @@ const TaskReducer = (state, action) => {
         ...state,
         tasks: state.tasks.filter((task) => task.id !== action.payload),
       };
+    case EDIT_TASK:
     case STATE_TASK:
       return {
         ...state,
-        tasks: state.tasksByProject.map((task) =>
+        tasks: state.tasks.map((task) =>
           task.id === action.payload.id ? action.payload : task
         ),
       };
@@ -55,14 +55,6 @@ const TaskReducer = (state, action) => {
         ...state,
         selectTaskState: action.payload,
         errorTask: true,
-      };
-    case EDIT_TASK:
-      return {
-        ...state,
-        tasks: state.tasks.map((task) =>
-          task.id === action.payload.id ? action.payload : task
-        ),
-        selectTaskState: null,
       };
     case RETURN_TO_ADD_TASK:
       return {

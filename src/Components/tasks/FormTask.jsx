@@ -13,6 +13,7 @@ const FormTask = () => {
     getTasksListByCurrentProject,
     selectTaskState,
     editTask,
+    returnToAddTask,
   } = taskContext;
 
   const [nameTask, setNameTask] = useState({
@@ -40,6 +41,7 @@ const FormTask = () => {
         return errorTaskFun();
       }
       editTask(nameTask);
+      returnToAddTask();
     } else {
       if (name.trim() === "") {
         return errorTaskFun();
