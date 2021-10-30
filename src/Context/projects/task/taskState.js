@@ -10,6 +10,7 @@ import {
   STATE_TASK,
   CURRENT_TASK,
   EDIT_TASK,
+  RETURN_TO_ADD_TASK,
 } from "../../../types";
 import { inistialStateTask } from "../../../state/initialState";
 
@@ -79,6 +80,11 @@ const TaskState = (props) => {
       payload: task,
     });
   };
+  const _returnToAddTask = () => {
+    dispatch({
+      type: RETURN_TO_ADD_TASK,
+    });
+  };
   return (
     <TaskContext.Provider
       value={{
@@ -94,6 +100,7 @@ const TaskState = (props) => {
         stateTask: _stateTask,
         currentTask: _currentTask,
         editTask: _editTask,
+        returnToAddTask: _returnToAddTask,
       }}
     >
       {props.children}
