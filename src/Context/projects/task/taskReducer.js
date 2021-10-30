@@ -7,6 +7,7 @@ import {
   STATE_TASK,
   CURRENT_TASK,
   EDIT_TASK,
+  RETURN_TO_ADD_TASK,
 } from "../../../types";
 import { addObjProperty, addSinglePropertyObj } from "../../../utilities";
 
@@ -61,6 +62,11 @@ const TaskReducer = (state, action) => {
         tasks: state.tasks.map((task) =>
           task.id === action.payload.id ? action.payload : task
         ),
+        selectTaskState: null,
+      };
+    case RETURN_TO_ADD_TASK:
+      return {
+        ...state,
         selectTaskState: null,
       };
     default:

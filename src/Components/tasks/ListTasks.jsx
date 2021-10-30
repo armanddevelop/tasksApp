@@ -14,6 +14,8 @@ const ListTasks = () => {
     getTasksListByCurrentProject,
     stateTask,
     currentTask,
+    selectTaskState,
+    returnToAddTask,
   } = tasksContext;
   const [obj] = currentProject;
   const buttonDeleteProject = (
@@ -23,6 +25,15 @@ const ListTasks = () => {
       onClick={() => deleteProject(obj.id)}
     >
       Eliminar proyecto &times;
+    </button>
+  );
+  const buttonReturnAddTask = (
+    <button
+      type="button"
+      className="btn btn-eliminar"
+      onClick={() => returnToAddTask()}
+    >
+      Regresar a agregar tarea
     </button>
   );
   useEffect(() => {
@@ -53,6 +64,7 @@ const ListTasks = () => {
             )}
           </ul>
           {buttonDeleteProject}
+          <div>{selectTaskState !== null ? buttonReturnAddTask : null}</div>
         </>
       )}
     </>
