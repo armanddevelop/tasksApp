@@ -13,6 +13,7 @@ const ListProjects = () => {
   //if (projects.length === 0) return null;
   useEffect(() => {
     getProjectsList();
+    //eslint-disable-next-line
   }, []);
   return (
     <ul className="listado-proyectos">
