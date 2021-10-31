@@ -38,6 +38,7 @@ const ListTasks = () => {
   );
   useEffect(() => {
     getTaskList();
+    //eslint-disable-next-line
   }, []);
   return (
     <>
